@@ -6,5 +6,8 @@ from . import views
 #     path('', views.index, name='index'),
 # ]
 urlpatterns = [
-    path('', views.test, name='test'),
+    # ex: /stocks/
+    # path('', views.test, name='test'),
+    # ex: /stocks/stocks_a
+    path('<str:table_name>/', views.query, name='query'),
 ]

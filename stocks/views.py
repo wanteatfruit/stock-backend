@@ -8,17 +8,23 @@ from django.http import HttpResponse, JsonResponse
 from stocks.models import A
 from stocks.models import B
 from stocks.models import C
+import stocks
 
 # Create your views here.
 # def index(request):
 #     return HttpResponse("Hello, world. You're at the stocks index.")
 
-def test(request):
-    response = A.objects.all()
+# def test(request):
+#     response = A.objects.all()
+#     data = list(response.values())
+#     return JssonResponse(data, safe=False)
+    
+
+def query(request, table_name):
+    model = getattr(stocks.models, table_name)
+    response = model.objects.all()
     data = list(response.values())
     return JsonResponse(data, safe=False)
-    # response_json=serializers.serialize('json',response)
-    # return HttpResponse(response_json)
-    # data['list']=json.loads(serializers.serialize("json", response))
-    # print(type(data['list']))
-    # return HttpResponse(data['list'])
+
+# def query(request, table_name):
+#     return HttpResponse("Hello world")
